@@ -1,0 +1,30 @@
+{% load comment_tags %}
+
+<div class="comments my-4">
+    <h4 class="heading-title">Comments</h4>
+
+    {% for comment in subject.comments.all %}
+        {% if user.is_authenticated or comment.approved %}
+            <div class="card my-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div><i class="fa fa-user-pen"></i> <span class="fw-bold">{{ comment.author }}</span></div>
+                    <div class="comment-actions">
+                        {% if not comment.approved %}
+                            <a class="btn btn-danger btn-sm" href="{% url 'app.modules.comments:comments.delete' pk=comment.pk %}"><i class="fa fa-trash"></i> Delete</a>
+                            <a class="btn btn-success btn-sm" href="{% url 'app.modules.comments:comments.approve' pk=comment.pk %}"><i class="fa fa-check"></i> Approve</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div>{{ comment.comment|safe|linebreaks }}</div>
+                    <div class="text-muted">Commented on: <small class="text-uppercase">{{ comment.created_at }}</small></div>
+                </div>
+            </div>
+        {% endif %}
+    {% empty %}
+        <p>No Comments Posted.</p>
+    {% endfor %}
+
+    {% render_comment_form subject %}
+</div>
