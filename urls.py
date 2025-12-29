@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from app.modules.comments import views
 
 app_name = 'app.modules.comments'
 

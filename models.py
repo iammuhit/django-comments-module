@@ -1,6 +1,7 @@
 from django.db import models
-from django.utils import timezone
 from django.urls import reverse
+from django.utils import timezone
+
 
 class Comment(models.Model):
     post       = models.ForeignKey('posts.Post', related_name='comments', on_delete=models.CASCADE)
