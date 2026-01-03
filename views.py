@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.contenttypes.models import ContentType
 
 from app.modules.comments.forms import CommentForm
 from app.modules.comments.models import Comment
@@ -10,29 +11,32 @@ from app.modules.posts.models import Post
 @login_required
 def create(request):
     if request.method == 'POST':
-        post = get_object_or_404(Post, pk=request.POST.get('post_pk'))
+        object_id       = request.POST.get('subject_id')
+        content_type_id = request.POST.get('subject_type_id')
+        content_type    = get_object_or_404(ContentType, pk=content_type_id)
+
         form = CommentForm(request.POST)
 
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = post
+            comment.content_type = content_type
+            comment.object_id = object_id
             comment.save()
             
-            return redirect('app.modules.posts:posts.view', pk=post.pk)
+            return redirect(comment.content_object.get_absolute_url())
     else:
-        return redirect('app.modules.posts:posts.index')
+        return redirect('/')
 
 
 @login_required
 def delete(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
-    post_pk = comment.post.pk
     comment.delete()
-    return redirect('app.modules.posts:posts.view', pk=post_pk)
+    return redirect(comment.content_object.get_absolute_url())
 
 
 @login_required
 def approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
-    return redirect('app.modules.posts:posts.view', pk=comment.post.pk)
+    return redirect(comment.content_object.get_absolute_url())
