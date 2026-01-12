@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.modules.comments.models import Comment
+from mayacms.contrib.comments.models import Comment
 
 
 @admin.register(Comment)

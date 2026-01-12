@@ -1,8 +1,8 @@
 from django.urls import path
 
-from app.modules.comments import views
+from mayacms.contrib.comments import views
 
-app_name = 'app.modules.comments'
+app_name = 'mayacms.contrib.comments'
 
 urlpatterns = [
     path('create/', views.create, name='comments.create'),

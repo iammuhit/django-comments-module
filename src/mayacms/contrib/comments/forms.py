@@ -1,6 +1,6 @@
 from django import forms
 
-from app.modules.comments.models import Comment
+from mayacms.contrib.comments.models import Comment
 
 
 class CommentForm(forms.ModelForm):

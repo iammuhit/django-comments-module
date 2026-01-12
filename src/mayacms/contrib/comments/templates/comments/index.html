@@ -4,8 +4,8 @@
             <div><i class="fa fa-user-pen"></i> <span class="fw-bold">{{ comment.author }}</span></div>
             <div class="comment-actions">
                 {% if not comment.approved %}
-                    <a class="btn btn-danger btn-sm" href="{% url 'app.modules.comments:comments.delete' pk=comment.pk %}"><i class="fa fa-trash"></i> Delete</a>
-                    <a class="btn btn-success btn-sm" href="{% url 'app.modules.comments:comments.approve' pk=comment.pk %}"><i class="fa fa-check"></i> Approve</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'mayacms.contrib.comments:comments.delete' pk=comment.pk %}"><i class="fa fa-trash"></i> Delete</a>
+                    <a class="btn btn-success btn-sm" href="{% url 'mayacms.contrib.comments:comments.approve' pk=comment.pk %}"><i class="fa fa-check"></i> Approve</a>
                 {% endif %}
             </div>
         </div>

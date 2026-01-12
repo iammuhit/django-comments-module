@@ -1,6 +1,6 @@
 <h4 class="heading-title">New Comment</h4>
 
-<form class="comment-form my-3" action="{% url 'app.modules.comments:comments.create' %}" method="post">
+<form class="comment-form my-3" action="{% url 'mayacms.contrib.comments:comments.create' %}" method="post">
     {% csrf_token %}
     {{form.as_div}}
 

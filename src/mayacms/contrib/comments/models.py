@@ -5,9 +5,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from app.modules.posts.models import Post
-
-
 class Comment(models.Model):
     object_id      = models.PositiveIntegerField()
     content_type   = models.ForeignKey(ContentType, on_delete=models.CASCADE)

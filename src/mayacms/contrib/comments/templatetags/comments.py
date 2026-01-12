@@ -1,8 +1,8 @@
 from django import template
 from django.contrib.contenttypes.models import ContentType
 
-from app.modules.comments.forms import CommentForm
-from app.modules.comments.models import Comment
+from mayacms.contrib.comments.forms import CommentForm
+from mayacms.contrib.comments.models import Comment
 
 register = template.Library()
 

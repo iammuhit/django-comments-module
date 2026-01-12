@@ -3,9 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.contenttypes.models import ContentType
 
-from app.modules.comments.forms import CommentForm
-from app.modules.comments.models import Comment
-from app.modules.posts.models import Post
+from mayacms.contrib.comments.forms import CommentForm
+from mayacms.contrib.comments.models import Comment
 
 
 @login_required
