@@ -1,0 +1,4 @@
+recursive-include src/mayacms/contrib/comments/static *
+recursive-include src/mayacms/contrib/comments/templates *
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
